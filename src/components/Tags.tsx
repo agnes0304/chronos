@@ -16,9 +16,9 @@ const Tags: FC<Props> = ({ tags, setClicked, clickedTags }) => {
     }
   };
   return (
-    <div>
+    <div className="flex justify-center gap-1 mt-2">
       {tags.map((tag, index) => (
-        <div className="cursor-pointer" key={index} onClick={()=>onSelect}>
+        <div className="cursor-pointer text-sm p-1 px-2 border-[1px] border-gray-300 rounded-full font-regular text-gray-400" key={index} onClick={()=>onSelect}>
           <span>{tag}</span>
         </div>
       ))}
