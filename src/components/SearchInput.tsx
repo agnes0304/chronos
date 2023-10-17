@@ -1,4 +1,6 @@
 import { FC, useState, useEffect, KeyboardEvent } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { autocompleteData } from "../data/dummy";
 
 interface Props {
@@ -53,6 +55,9 @@ const SearchInput: FC<Props> = ({ selectedTags }) => {
         {words.map((word, index) => (
           <div>
             <span key={index}>{word}</span>
+            <span>
+              <FontAwesomeIcon icon={faXmark} />
+            </span>
           </div>
         ))}
       </div>
