@@ -14,16 +14,16 @@ const BrowsePage: FC = () => {
 
   return (
     <>
-      <form>
+      {/* <form> */}
         <SearchInput selectedTags={selectedTags} />
         <Tags
           tags={tags}
           setClicked={setSelectedTags}
           clickedTags={selectedTags}
         />
-      </form>
+      {/* </form> */}
       {/* input focus없이 enter치거나, button onClick */}
-      <button></button>
+      {/* <button></button> */}
     </>
   );
 };

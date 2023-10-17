@@ -18,7 +18,7 @@ const Tags: FC<Props> = ({ tags, setClicked, clickedTags }) => {
   return (
     <div>
       {tags.map((tag, index) => (
-        <div key={index} onClick={()=>onSelect}>
+        <div className="cursor-pointer" key={index} onClick={()=>onSelect}>
           <span>{tag}</span>
         </div>
       ))}

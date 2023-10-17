@@ -49,7 +49,7 @@ const SearchInput: FC<Props> = ({ selectedTags }) => {
 
   return (
     // fake input box
-    <div>
+    <div className="bg-black">
       {/* tags in input area */}
       <div>
         {words.map((word, index) => (
