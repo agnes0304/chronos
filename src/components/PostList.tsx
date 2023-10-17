@@ -1,5 +1,5 @@
 const PostList = () => {
-    return (<></>)
+    return(<></>)
 }
 
 export default PostList;
