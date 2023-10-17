@@ -31,6 +31,7 @@ const SearchInput: FC<Props> = ({ selectedTags }) => {
     setSuggestions(autocompleteData);
   }, []);
 
+  // TODO: optimize with trie DS
   useEffect(() => {
     if (query) {
       const filtered = suggestions.filter((item) => {
@@ -50,45 +51,47 @@ const SearchInput: FC<Props> = ({ selectedTags }) => {
   };
 
   return (
-    <div className="flex relative w-[90vw] h-[39px] border-solid border-[1px] border-gray-300 rounded-[20px] p-1 px-[4px]">
-      <div className="flex gap-[3px] flex-shrink-0">
-        {words.map((word, index) => (
-          <div className="bg-indigo-300 text-sm p-1 px-2 rounded-full">
-            <span className="text-white font-light" key={index}>
-              {word}{" "}
-            </span>
-            <span className="text-white">
-              <FontAwesomeIcon icon={faXmark} />
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="ml-2 flex relative flex-grow">
-        <input
-          className="flex-grow bg-transparent text-sm text-gray-400 overflow-hidden focus:outline-none"
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyUp={handleEnter}
-        />
-        <ul className="absolute top-[33px] right-2 w-[98%]">
-          {filteredSuggestions.map((item, index) => (
-            <li
-              className="text-indigo-400 text-sm bg-white bg-opacity-90 align-baseline p-1 text-end hover:bg-indigo-100/90 hover:text-indigo-600"
-              key={index}
-            >
-              {item}
-            </li>
+    <div className="flex justify-center items-center">
+      <div className="flex relative w-[90vw] h-[39px] border-solid border-[1px] border-gray-300 rounded-[20px] p-1 px-[4px]">
+        <div className="flex gap-[3px] flex-shrink-0">
+          {words.map((word, index) => (
+            <div className="bg-indigo-300 text-sm p-1 px-2 rounded-full">
+              <span className="text-white font-light" key={index}>
+                {word}{" "}
+              </span>
+              <span className="text-white">
+                <FontAwesomeIcon icon={faXmark} />
+              </span>
+            </div>
           ))}
-        </ul>
-      </div>
-      <div>
-        <button
-          type="button"
-          className="text-gray-300 text-sm absolute rounded-full right-3 top-2 bg-white bg-opacity-50"
-        >
-          <FontAwesomeIcon icon={faMagnifyingGlass} />
-        </button>
+        </div>
+        <div className="ml-2 flex relative flex-grow">
+          <input
+            className="flex-grow bg-transparent text-sm text-gray-400 overflow-hidden focus:outline-none"
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyUp={handleEnter}
+          />
+          <ul className="absolute top-[33px] right-2 w-[98%]">
+            {filteredSuggestions.map((item, index) => (
+              <li
+                className="text-indigo-400 text-sm bg-white bg-opacity-90 align-baseline p-1 text-end hover:bg-indigo-100/90 hover:text-indigo-600"
+                key={index}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <button
+            type="button"
+            className="text-gray-300 text-sm absolute rounded-full right-3 top-2 bg-white bg-opacity-50"
+          >
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </button>
+        </div>
       </div>
     </div>
   );

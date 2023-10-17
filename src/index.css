@@ -9,12 +9,12 @@
 
 body {
   height: 100vh;
-  display: grid;
-  place-items: center;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
+  /* display: grid; */
+  /* place-items: center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 body,
