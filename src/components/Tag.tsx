@@ -1,5 +1,11 @@
-const Tag = () => {
-    return (<></>)
-}
+import { FC } from "react";
 
-export default Tag
+const Tag: FC = () => {
+  return (
+    <div>
+      <span>title</span>
+    </div>
+  );
+};
+
+export default Tag;
