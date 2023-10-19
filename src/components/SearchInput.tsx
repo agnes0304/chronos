@@ -6,9 +6,10 @@ import { autocompleteData } from "../data/dummy";
 
 interface Props {
   selectedTags: string[];
+  setClicked: (tags: string[]) => void;
 }
 
-const SearchInput: FC<Props> = ({ selectedTags }) => {
+const SearchInput: FC<Props> = ({ selectedTags, setClicked }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
@@ -48,6 +49,22 @@ const SearchInput: FC<Props> = ({ selectedTags }) => {
     if (e.key === "Enter") {
       setWords([...words, query]);
       setQuery("");
+      setClicked([...words, query]);
+    }
+  };
+
+  // TODO: handle delete
+  const handleDelete = (wordToDelete: string) => {
+    const newWords = words.filter((word) => word !== wordToDelete);
+    setWords(newWords);
+    setClicked(newWords);
+  };
+
+  const handleBackspace = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Backspace" && query === "") {
+      const newWords = words.slice(0, words.length - 1);
+      setWords(newWords);
+      setClicked(newWords);
     }
   };
 
@@ -60,7 +77,10 @@ const SearchInput: FC<Props> = ({ selectedTags }) => {
               <span className="text-indigo-400 font-regular" key={index}>
                 {word}{" "}
               </span>
-              <span className="text-indigo-300">
+              <span
+                className="text-indigo-300"
+                onClick={() => handleDelete(word)}
+              >
                 <FontAwesomeIcon icon={faXmark} />
               </span>
             </div>
@@ -72,7 +92,10 @@ const SearchInput: FC<Props> = ({ selectedTags }) => {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onKeyUp={handleEnter}
+            onKeyUp={(e) => {
+              handleEnter(e);
+              handleBackspace(e);
+            }}
           />
           <ul className="absolute top-[33px] right-2 w-[98%]">
             {filteredSuggestions.map((item, index) => (

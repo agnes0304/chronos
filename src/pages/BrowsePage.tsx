@@ -16,7 +16,7 @@ const BrowsePage: FC = () => {
   return (
     <>
       <Logo />
-      <SearchInput selectedTags={selectedTags} />
+      <SearchInput setClicked={setSelectedTags} selectedTags={selectedTags} />
       <Tags
         tags={tags}
         setClicked={setSelectedTags}
