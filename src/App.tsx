@@ -3,7 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./components/Root";
 import BrowsePage from "./pages/BrowsePage";
 import ErrorPage from "./pages/ErrorPage";
-// import PostFeed from "./pages/PostFeed";
+import PostFeed from "./pages/PostFeed";
 
 const router = createBrowserRouter([
   {
@@ -14,10 +14,10 @@ const router = createBrowserRouter([
       { index: true, element: <BrowsePage /> },
 
       // Postfeed
-      // {
-      //   path: "list",
-      //   children: [{ index: true, element: <PostFeed /> }],
-      // },
+      {
+        path: "list",
+        children: [{ index: true, element: <PostFeed /> }],
+      },
     ],
   },
 ]);
