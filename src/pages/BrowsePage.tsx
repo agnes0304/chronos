@@ -1,27 +1,12 @@
-import { FC, useState, useEffect } from "react";
-import SearchInput from "../components/SearchInput";
-import Tags from "../components/Tags";
+import { FC } from "react";
+import Browse from "../components/Browse";
 import Logo from "../components/Logo";
 
-import { mainTags } from "../data/dummy";
-
 const BrowsePage: FC = () => {
-  const [tags, setTags] = useState<string[]>([]);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
-  useEffect(() => {
-    setTags(mainTags);
-  }, []);
-
   return (
     <>
       <Logo />
-      <SearchInput setClicked={setSelectedTags} selectedTags={selectedTags} />
-      <Tags
-        tags={tags}
-        setClicked={setSelectedTags}
-        clickedTags={selectedTags}
-      />
+      <Browse />
     </>
   );
 };
