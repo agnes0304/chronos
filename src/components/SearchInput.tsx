@@ -12,7 +12,7 @@ const SearchInput: FC<Props> = ({ selectedTags }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
-  const [words, setWords] = useState<string[]>(selectedTags);
+  const [words, setWords] = useState<string[]>([]);
 
   // 🌐 fetching data (검색엔진 키워드 전부)
   // -> 이렇게 하면 query 바뀔때마다 api 호출하게 되는데 이건 비효율적아닌가
@@ -29,7 +29,8 @@ const SearchInput: FC<Props> = ({ selectedTags }) => {
 
   useEffect(() => {
     setSuggestions(autocompleteData);
-  }, []);
+    setWords(selectedTags);
+  }, [autocompleteData, selectedTags]);
 
   // TODO: optimize with trie DS
   useEffect(() => {
@@ -55,11 +56,11 @@ const SearchInput: FC<Props> = ({ selectedTags }) => {
       <div className="flex relative w-[90vw] h-[39px] border-solid border-[1px] border-gray-300 rounded-[20px] p-1 px-[4px]">
         <div className="flex gap-[3px] flex-shrink-0">
           {words.map((word, index) => (
-            <div className="bg-indigo-300 text-sm p-1 px-2 rounded-full">
-              <span className="text-white font-light" key={index}>
+            <div className="border-indigo-300 border-2 text-sm pb-1 pt-[3px] px-2 rounded-full">
+              <span className="text-indigo-400 font-regular" key={index}>
                 {word}{" "}
               </span>
-              <span className="text-white">
+              <span className="text-indigo-300">
                 <FontAwesomeIcon icon={faXmark} />
               </span>
             </div>
