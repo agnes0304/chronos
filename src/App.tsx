@@ -1,5 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
+import RootLayout from "./components/Root";
 import BrowsePage from "./pages/BrowsePage";
 import ErrorPage from "./pages/ErrorPage";
 // import PostFeed from "./pages/PostFeed";
@@ -7,21 +8,22 @@ import ErrorPage from "./pages/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <BrowsePage />,
+    element: <RootLayout />,
     errorElement: <ErrorPage />,
-    // children: [
-    //   {
-    //     path: "list",
-    //     element: <PostFeed />,
-    //   },
-    // ],
+    children: [
+      { index: true, element: <BrowsePage /> },
+
+      // Postfeed
+      // {
+      //   path: "list",
+      //   children: [{ index: true, element: <PostFeed /> }],
+      // },
+    ],
   },
 ]);
 
 const App = () => {
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

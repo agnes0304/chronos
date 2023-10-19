@@ -2,7 +2,7 @@ import { FC, useState, useEffect, KeyboardEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { autocompleteData } from "../data/dummy";
+import { autocompleteData } from "../../data/dummy";
 
 interface Props {
   selectedTags: string[];
