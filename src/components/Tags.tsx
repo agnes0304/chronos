@@ -12,10 +12,10 @@ const Tags: FC<Props> = ({ tags, setClicked, clickedTags }) => {
     if (clickedTags.includes(tag)) {
       const filtered = clickedTags.filter((item) => item !== tag);
       setClicked(filtered);
-      console.log(filtered); // ok
+      // console.log(filtered); // ok
     } else {
       setClicked([...clickedTags, tag]);
-      console.log([...clickedTags, tag]); // ok
+      // console.log([...clickedTags, tag]); // ok
     }
   };
   return (

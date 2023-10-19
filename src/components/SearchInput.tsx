@@ -86,7 +86,7 @@ const SearchInput: FC<Props> = ({ selectedTags, setClicked }) => {
                 {word}{" "}
               </span>
               <span
-                className="text-indigo-300"
+                className="text-indigo-300 cursor-pointer"
                 onClick={() => handleDelete(word)}
               >
                 <FontAwesomeIcon icon={faXmark} />
