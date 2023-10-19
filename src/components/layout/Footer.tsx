@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import naverCircle from "../assets/naverCircle.png";
+import naverCircle from "../../assets/naverCircle.png";
 
 const Footer = () => {
   return (

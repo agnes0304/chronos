@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import RootLayout from "./components/Root";
+import RootLayout from "./components/layout/Root";
 import BrowsePage from "./pages/BrowsePage";
 import ErrorPage from "./pages/ErrorPage";
 import PostFeed from "./pages/PostFeed";
