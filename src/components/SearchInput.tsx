@@ -14,6 +14,7 @@ const SearchInput: FC<Props> = ({ selectedTags, setClicked }) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [filteredSuggestions, setFilteredSuggestions] = useState<string[]>([]);
   const [words, setWords] = useState<string[]>([]);
+  const [isComposing, setIsComposing] = useState(false);
 
   // 🌐 fetching data (검색엔진 키워드 전부)
   // -> 이렇게 하면 query 바뀔때마다 api 호출하게 되는데 이건 비효율적아닌가
@@ -46,14 +47,13 @@ const SearchInput: FC<Props> = ({ selectedTags, setClicked }) => {
   }, [query, suggestions]);
 
   const handleEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !isComposing) {
       setWords([...words, query]);
       setQuery("");
       setClicked([...words, query]);
     }
   };
 
-  // TODO: handle delete
   const handleDelete = (wordToDelete: string) => {
     const newWords = words.filter((word) => word !== wordToDelete);
     setWords(newWords);
@@ -65,6 +65,14 @@ const SearchInput: FC<Props> = ({ selectedTags, setClicked }) => {
       const newWords = words.slice(0, words.length - 1);
       setWords(newWords);
       setClicked(newWords);
+    }
+  };
+
+  const handleComposition = (e: React.CompositionEvent<HTMLInputElement>) => {
+    if (e.type === "compositionend") {
+      setIsComposing(false);
+    } else {
+      setIsComposing(true);
     }
   };
 
@@ -92,10 +100,12 @@ const SearchInput: FC<Props> = ({ selectedTags, setClicked }) => {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            onKeyUp={(e) => {
+            onKeyDown={(e) => {
               handleEnter(e);
               handleBackspace(e);
             }}
+            onCompositionStart={handleComposition}
+            onCompositionEnd={handleComposition}
           />
           <ul className="absolute top-[33px] right-2 w-[98%]">
             {filteredSuggestions.map((item, index) => (
