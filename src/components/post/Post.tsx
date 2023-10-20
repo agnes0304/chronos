@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Actions from "./Actions";
 import Modal from "../layout/Modal";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +8,11 @@ import summary from "../../assets/summary.webp";
 // TODO: post link, Actions로 넘기기
 
 const Post: FC = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+
   return (
     <div className="flex w-full h-[120px] border rounded border-gray-300 p-1 px-2">
       <div className="relative w-auto h-full group shrink-0">
@@ -15,7 +20,10 @@ const Post: FC = () => {
           className="w-full h-full overflow-hidden object-cover hover:opacity-30 transition-opacity duration-300"
           src={summary}
         />
-        <div className="absolute text-2xl text-gray-400 pointer-events-none opacity-0 top-[35%] left-[42%] group-hover:opacity-100 transition-opacity duration-300">
+        <div
+          className="absolute text-2xl text-gray-400 pointer-events-none opacity-0 top-[35%] left-[42%] group-hover:opacity-100 transition-opacity duration-300"
+          onClick={()=>openModal}
+        >
           <FontAwesomeIcon icon={faMagnifyingGlass} />
         </div>
       </div>
@@ -30,7 +38,7 @@ const Post: FC = () => {
       </div>
 
       {/* 모달 */}
-      <Modal image={summary} />
+      {isModalOpen && <Modal image={summary} isOpen={isModalOpen} onClose={closeModal} />}
     </div>
   );
 };
