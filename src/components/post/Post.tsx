@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Actions from "./Actions";
+import Modal from "../layout/Modal";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import summary from "../../assets/summary.webp";
@@ -27,6 +28,9 @@ const Post: FC = () => {
         </p>
         <Actions />
       </div>
+
+      {/* 모달 */}
+      <Modal image={summary} />
     </div>
   );
 };
