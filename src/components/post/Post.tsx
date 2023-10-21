@@ -10,16 +10,15 @@ import summary from "../../assets/summary.webp";
 const Post: FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const openModal = () => {
-    setModalOpen(true);
-    console.log("open");
-  };
+  const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
 
   return (
     <div className="flex w-full h-[120px] border rounded border-gray-300 p-1 px-2">
-      <div className="relative w-auto h-full group shrink-0"
-      onClick={openModal}>
+      <div
+        className="relative w-auto h-full group shrink-0"
+        onClick={openModal}
+      >
         <img
           className="w-full h-full overflow-hidden object-cover hover:opacity-30 transition-opacity duration-300"
           src={summary}
