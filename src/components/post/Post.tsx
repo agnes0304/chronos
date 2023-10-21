@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import summary from "../../assets/summary.webp";
 
 // TODO: post link, Actions로 넘기기
+// img, title, content, blog link, file link -> post data
 
 const Post: FC = () => {
   const [isModalOpen, setModalOpen] = useState(false);
